@@ -20,5 +20,11 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: `gatsby-transformer-markdown-references`,
+      options: {
+        types: ["MarkdownRemark"],
+      },
+    },
   ],
 }
