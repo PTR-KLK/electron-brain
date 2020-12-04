@@ -1,7 +1,7 @@
 {
-  "name": "gatsby-starter-hello-world",
+  "name": "electron-brain",
   "private": true,
-  "description": "A simplified bare-bones starter for Gatsby",
+  "description": "Gatsby site with digital garden",
   "version": "0.1.0",
   "license": "0BSD",
   "scripts": {
@@ -15,17 +15,14 @@
   },
   "dependencies": {
     "gatsby": "^2.26.1",
+    "gatsby-remark-double-brackets-link": "^0.1.7",
+    "gatsby-source-filesystem": "^2.7.0",
+    "gatsby-transformer-remark": "^2.12.0",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "slugify": "^1.4.6"
   },
   "devDependencies": {
     "prettier": "2.1.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
   }
 }
