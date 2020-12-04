@@ -6,7 +6,7 @@ export default function Home({ data }) {
   return (
     <Layout>
       <h1>{data.site.siteMetadata.title}</h1>
-      <h4>{data.allMarkdownRemark.totalCount} Posts</h4>
+      <h4>{data.allMarkdownRemark.totalCount} Pages</h4>
       {data.allMarkdownRemark.edges.map(({ node }) => (
         <div key={node.id}>
           <Link to={node.fields.slug}>
