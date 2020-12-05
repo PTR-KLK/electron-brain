@@ -1,8 +1,11 @@
-import React from "react"
+import React, { Suspense } from "react"
 import { useStaticQuery, Link, graphql } from "gatsby"
-import Graph from "../components/graph"
+
+const Graph = React.lazy(() => import("../components/graph"))
 
 export default function Layout({ children }) {
+  const isSSR = typeof window === "undefined"
+
   const data = useStaticQuery(
     graphql`
       query {
@@ -21,7 +24,11 @@ export default function Layout({ children }) {
         <h3>My {data.site.siteMetadata.title}</h3>
       </Link>
       <Link to={`/about/`}>About</Link>
-      <Graph />
+      {!isSSR && (
+        <Suspense fallback={<div>Loading...</div>}>
+          <Graph />
+        </Suspense>
+      )}
       {children}
     </div>
   )

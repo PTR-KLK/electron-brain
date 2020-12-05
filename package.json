@@ -14,7 +14,9 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
+    "@loadable/component": "^5.14.1",
     "gatsby": "^2.26.1",
+    "gatsby-plugin-catch-links": "^2.6.0",
     "gatsby-remark-double-brackets-link": "^0.1.7",
     "gatsby-source-filesystem": "^2.7.0",
     "gatsby-transformer-markdown-references": "^0.1.5",

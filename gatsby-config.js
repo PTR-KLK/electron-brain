@@ -26,5 +26,11 @@ module.exports = {
         types: ["MarkdownRemark"],
       },
     },
+    {
+      resolve: `gatsby-plugin-catch-links`,
+      options: {
+        excludePattern: /(excluded-link|external)/,
+      },
+    },
   ],
 }
