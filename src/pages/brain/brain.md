@@ -9,3 +9,5 @@ This is brain.
 It has [[brain part]]
 
 It has also [[brain part in folder]]
+
+More info [[about]] this brain.

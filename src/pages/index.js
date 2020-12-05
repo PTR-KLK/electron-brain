@@ -5,8 +5,8 @@ import Layout from "../components/layout"
 export default function Home({ data }) {
   return (
     <Layout>
-      <h1>{data.site.siteMetadata.title}</h1>
-      <h4>{data.allMarkdownRemark.totalCount} Pages</h4>
+      <h1>What's new in the {data.site.siteMetadata.title}</h1>
+      <h4>{data.allMarkdownRemark.totalCount} Nodes</h4>
       {data.allMarkdownRemark.edges.map(({ node }) => (
         <div key={node.id}>
           <Link to={node.fields.slug}>
