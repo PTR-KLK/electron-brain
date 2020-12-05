@@ -25,6 +25,16 @@
     "slugify": "^1.4.6"
   },
   "devDependencies": {
+    "husky": ">=4",
+    "lint-staged": ">=10",
     "prettier": "2.1.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,md}": "prettier --write"
   }
 }

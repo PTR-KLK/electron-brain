@@ -62,7 +62,14 @@ export default function Graph() {
   return (
     <Sigma
       graph={graphData}
-      settings={{ drawEdges: true, clone: false }}
+      settings={{
+        defaultLabelSize: 15,
+        drawLabels: true,
+        labelSize: "fixed",
+        labelThreshold: 5,
+        drawEdges: true,
+        clone: false,
+      }}
       onClickNode={handleClick}
     >
       <RelativeSize initialSize={15} />
