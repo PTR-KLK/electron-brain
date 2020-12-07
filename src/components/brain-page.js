@@ -2,16 +2,21 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "./layout"
 import References from "./references"
+import Seo from "./seo"
 
 export default function BrainPage({ data }) {
   const note = data.markdownRemark
 
   return (
     <Layout>
-      <div>
-        <h1>{note.frontmatter.title}</h1>
+      <Seo
+        title={note.frontmatter.title}
+        description={note.frontmatter.excerpt}
+      />
+      <article>
+        <h2>{note.frontmatter.title}</h2>
         <div dangerouslySetInnerHTML={{ __html: note.html }} />
-      </div>
+      </article>
       <hr />
       <References heading="In this note:" arr={note.outboundReferences} />
       <References heading="Reffered in:" arr={note.inboundReferences} />

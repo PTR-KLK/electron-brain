@@ -19,17 +19,21 @@ export default function Layout({ children }) {
   )
 
   return (
-    <div>
-      <Link to={`/`}>
-        <h3>My {data.site.siteMetadata.title}</h3>
-      </Link>
-      <Link to={`/about/`}>About</Link>
-      {!isSSR && (
-        <Suspense fallback={<div>Loading...</div>}>
-          <Graph />
-        </Suspense>
-      )}
-      {children}
-    </div>
+    <>
+      <nav>
+        <Link to={`/`}>
+          <h1>My {data.site.siteMetadata.title}</h1>
+        </Link>
+        <Link to={`/about/`}>About</Link>
+      </nav>
+      <main>
+        {!isSSR && (
+          <Suspense fallback={<div>Loading...</div>}>
+            <Graph />
+          </Suspense>
+        )}
+        {children}
+      </main>
+    </>
   )
 }

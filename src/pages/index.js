@@ -1,22 +1,31 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
+import Seo from "../components/seo"
 
 export default function Home({ data }) {
+  const {
+    site: { siteMetadata },
+    allMarkdownRemark: { edges: pages },
+  } = data
+
   return (
     <Layout>
-      <h1>Latest updates in the {data.site.siteMetadata.title}:</h1>
-      {data.allMarkdownRemark.edges.map(({ node }) => (
-        <div key={node.id}>
-          <Link to={node.fields.slug}>
-            <h3>
-              {node.frontmatter.title}{" "}
-              <span>— {node.fields.modifiedTime.slice(0, 10)}</span>
-            </h3>
-            <p>{node.frontmatter.excerpt || node.excerpt}</p>
-          </Link>
-        </div>
-      ))}
+      <Seo title={siteMetadata.title} description={siteMetadata.description} />
+      <h2>Latest updates in the {siteMetadata.title}:</h2>
+      <ul>
+        {pages.map(({ node }) => (
+          <li key={node.id}>
+            <Link to={node.fields.slug}>
+              <h3>
+                {node.frontmatter.title}{" "}
+                <span>— {node.fields.modifiedTime.slice(0, 10)}</span>
+              </h3>
+              <p>{node.frontmatter.excerpt || node.excerpt}</p>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </Layout>
   )
 }
@@ -26,6 +35,7 @@ export const query = graphql`
     site {
       siteMetadata {
         title
+        description
       }
     }
     allMarkdownRemark(

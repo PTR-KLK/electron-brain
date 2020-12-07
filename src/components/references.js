@@ -5,7 +5,7 @@ export default function References({ arr, heading }) {
   if (arr.length === 0) return null
 
   return (
-    <div>
+    <section>
       <h4>{heading}</h4>
       <ul>
         {arr.map(el => {
@@ -16,6 +16,6 @@ export default function References({ arr, heading }) {
           )
         })}
       </ul>
-    </div>
+    </section>
   )
 }
