@@ -54,7 +54,7 @@ module.exports = {
             type: `image/png`,
             purpose: `maskable`,
           },
-        ], // Add or remove icon sizes as desired
+        ],
       },
     },
     {
@@ -88,5 +88,6 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-styled-components`,
   ],
 }
