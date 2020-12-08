@@ -6,8 +6,8 @@ excerpt: "This is my electron brain"
 
 This is brain.
 
-It has [[brain part]]
+It has [[brain parts]]
 
-It has also [[brain part in folder]]
+It has also [[brain parts in folder]]
 
 More info [[about]] this brain.

@@ -1,6 +1,18 @@
-import React from "react"
+import React, { useState } from "react"
 import { useStaticQuery, graphql, navigate } from "gatsby"
-import { Sigma, RandomizeNodePositions, RelativeSize } from "react-sigma"
+import styled from "styled-components"
+import Graph from "react-graph-vis"
+
+const Container = styled.div`
+  .vis-network {
+    tabindex: 0;
+  }
+
+  canvas:focus,
+  .vis-network:focus {
+    outline: none;
+  }
+`
 
 const createGraphData = arr => {
   const nodes = []
@@ -9,9 +21,8 @@ const createGraphData = arr => {
   arr.forEach(el =>
     el.outboundReferences.forEach(elem =>
       edges.push({
-        id: `${el.id.slice(0, 4)}-${elem.id.slice(0, 4)}`,
-        source: el.id,
-        target: elem.id,
+        from: el.id,
+        to: elem.id,
       })
     )
   )
@@ -27,7 +38,43 @@ const createGraphData = arr => {
   return { nodes: nodes, edges: edges }
 }
 
-export default function Graph() {
+const GraphComponent = React.memo(() => {
+  const [graphActive, setGraphActive] = useState(false)
+
+  const options = {
+    layout: {
+      improvedLayout: true,
+      randomSeed: 1,
+    },
+    edges: {
+      color: "#000000",
+      chosen: false,
+      arrows: {
+        to: false,
+        from: false,
+      },
+    },
+    nodes: {
+      fixed: true,
+      shape: "square",
+      size: 6,
+      color: "#000000",
+      font: {
+        background: "#ffffff",
+        face: "monospace",
+      },
+    },
+    physics: {
+      enabled: false,
+    },
+    interaction: {
+      dragView: graphActive,
+      zoomView: graphActive,
+    },
+    height: "300px",
+    autoResize: true,
+  }
+
   const {
     allMarkdownRemark: { nodes },
   } = useStaticQuery(
@@ -57,23 +104,30 @@ export default function Graph() {
   )
 
   const graphData = createGraphData(nodes)
-  const handleClick = event => navigate(event.data.node.link)
+
+  const activateGraphOnKeypress = e => {
+    if (e.keyCode === 32) {
+      setGraphActive(!graphActive)
+    }
+  }
+
+  const events = {
+    select: function (event) {
+      if (event.event.type === "tap" && event.nodes[0] && graphActive) {
+        const link = graphData.nodes.find(el => el.id === event.nodes[0]).link
+        return link && navigate(link)
+      }
+    },
+  }
 
   return (
-    <Sigma
-      graph={graphData}
-      settings={{
-        defaultLabelSize: 15,
-        drawLabels: true,
-        labelSize: "fixed",
-        labelThreshold: 5,
-        drawEdges: true,
-        clone: false,
-      }}
-      onClickNode={handleClick}
+    <Container
+      onClick={() => setGraphActive(!graphActive)}
+      onKeyUp={activateGraphOnKeypress}
     >
-      <RelativeSize initialSize={15} />
-      <RandomizeNodePositions />
-    </Sigma>
+      <Graph graph={graphData} options={options} events={events} />
+    </Container>
   )
-}
+})
+
+export default GraphComponent
