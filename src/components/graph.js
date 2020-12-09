@@ -4,8 +4,17 @@ import styled from "styled-components"
 import Graph from "react-graph-vis"
 
 const Container = styled.div`
-  .vis-network {
-    tabindex: 0;
+  position: absolute;
+  left: 0;
+  width: 100%;
+
+  p {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 1rem;
+    font-family: monospace;
+    background: #ffffff;
   }
 
   canvas:focus,
@@ -38,48 +47,59 @@ const createGraphData = arr => {
   return { nodes: nodes, edges: edges }
 }
 
-const GraphComponent = React.memo(() => {
-  const [graphActive, setGraphActive] = useState(false)
+const findCurrentNodes = (arr, pathname) => {
+  const node = arr.find(el => el.fields.slug === pathname)
+  const mapReferences = arr => arr.map(el => el.id)
 
-  const options = {
-    layout: {
-      improvedLayout: true,
-      randomSeed: 1,
-    },
-    edges: {
-      color: "#000000",
-      chosen: false,
-      arrows: {
-        to: false,
-        from: false,
-      },
-    },
-    nodes: {
-      fixed: true,
-      shape: "square",
-      size: 6,
-      color: "#000000",
-      font: {
-        background: "#ffffff",
-        face: "monospace",
-      },
-    },
-    physics: {
-      enabled: false,
-    },
-    interaction: {
-      dragView: graphActive,
-      zoomView: graphActive,
-    },
-    height: "300px",
-    autoResize: true,
-  }
+  return node
+    ? [
+        node.id,
+        ...mapReferences(node.outboundReferences),
+        ...mapReferences(node.inboundReferences),
+      ]
+    : []
+}
 
+const options = graphActive => ({
+  layout: {
+    improvedLayout: true,
+    randomSeed: 1,
+  },
+  edges: {
+    color: "#000000",
+    chosen: false,
+    arrows: {
+      to: false,
+      from: false,
+    },
+  },
+  nodes: {
+    fixed: true,
+    shape: "square",
+    size: 6,
+    color: "#000000",
+    font: {
+      background: "#ffffff",
+      face: "monospace",
+    },
+  },
+  physics: {
+    enabled: false,
+  },
+  interaction: {
+    dragView: graphActive,
+    zoomView: graphActive,
+  },
+  height: "300px",
+  autoResize: true,
+})
+
+const GraphComponent = () => {
   const {
     allMarkdownRemark: { nodes },
   } = useStaticQuery(
     graphql`
-      query {
+      {
         allMarkdownRemark {
           nodes {
             id
@@ -97,19 +117,22 @@ const GraphComponent = React.memo(() => {
                 }
               }
             }
+            inboundReferences {
+              ... on MarkdownRemark {
+                id
+                frontmatter {
+                  title
+                }
+              }
+            }
           }
         }
       }
     `
   )
+  const [graphActive, setGraphActive] = useState(false)
 
   const graphData = createGraphData(nodes)
-
-  const activateGraphOnKeypress = e => {
-    if (e.keyCode === 32) {
-      setGraphActive(!graphActive)
-    }
-  }
 
   const events = {
     select: function (event) {
@@ -121,13 +144,24 @@ const GraphComponent = React.memo(() => {
   }
 
   return (
-    <Container
-      onClick={() => setGraphActive(!graphActive)}
-      onKeyUp={activateGraphOnKeypress}
-    >
-      <Graph graph={graphData} options={options} events={events} />
+    <Container onClick={() => setGraphActive(true)}>
+      <Graph
+        graph={graphData}
+        options={options(graphActive)}
+        events={events}
+        getNetwork={network => {
+          const currNodes = findCurrentNodes(nodes, window.location.pathname)
+          network.fit({
+            nodes: currNodes,
+          })
+          if (currNodes.length > 0) {
+            network.selectNodes([currNodes[0]])
+          }
+        }}
+      />
+      {!graphActive ? <p>Tap or click to toggle navigation</p> : null}
     </Container>
   )
-})
+}
 
 export default GraphComponent

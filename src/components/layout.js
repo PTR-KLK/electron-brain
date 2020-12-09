@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
   body,html {
     margin: 0;
     padding: 0;
+}
 `
 
 const Container = styled.div`
@@ -15,9 +16,25 @@ const Container = styled.div`
   padding: 0 1rem;
   max-width: 768px;
 
+  main {
+    position: relative;
+    top: 300px;
+  }
+
   @media (min-width: 768px) {
     margin: 0 auto;
   }
+`
+
+const Fallback = styled.div`
+  position: absolute;
+  font-family: monospace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 0;
+  width: 100%;
+  height: 300px;
 `
 
 export default function Layout({ children }) {
@@ -43,16 +60,14 @@ export default function Layout({ children }) {
           <Link to={`/`}>
             <h1>My {data.site.siteMetadata.title}</h1>
           </Link>
-          <Link to={`/about/`}>About</Link>
+          <Link to={`/about`}>About</Link>
         </nav>
-        <main>
-          {!isSSR && (
-            <Suspense fallback={<div>Loading...</div>}>
-              <Graph />
-            </Suspense>
-          )}
-          {children}
-        </main>
+        {!isSSR && (
+          <Suspense fallback={<Fallback>Loading...</Fallback>}>
+            <Graph />
+          </Suspense>
+        )}
+        <main>{children}</main>
       </Container>
     </>
   )
