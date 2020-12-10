@@ -2,7 +2,7 @@ import React, { Suspense } from "react"
 import styled, { createGlobalStyle } from "styled-components"
 import { useStaticQuery, Link, graphql } from "gatsby"
 
-const Graph = React.lazy(() => import("../components/graph"))
+const Graph = React.lazy(() => import("./graph/graph"))
 
 const GlobalStyle = createGlobalStyle`
   body,html {
