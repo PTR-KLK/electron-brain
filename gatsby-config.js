@@ -60,8 +60,22 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `src`,
-        path: `${__dirname}/src/`,
+        name: `pages`,
+        path: `${__dirname}/src/pages/`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images/`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `notes`,
+        path: `${__dirname}/notes/`,
       },
     },
     {
@@ -70,6 +84,9 @@ module.exports = {
         plugins: [
           {
             resolve: `gatsby-remark-double-brackets-link`,
+            options: {
+              stripBrackets: true,
+            },
           },
         ],
       },

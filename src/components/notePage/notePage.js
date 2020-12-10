@@ -1,10 +1,10 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Layout from "./layout"
-import References from "./references"
-import Seo from "./seo"
+import Layout from "../layout"
+import References from "./components/references"
+import Seo from "../seo"
 
-export default function BrainPage({ data }) {
+export default function NotePage({ data }) {
   const note = data.markdownRemark
 
   return (
