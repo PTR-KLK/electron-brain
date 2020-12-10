@@ -67,18 +67,20 @@ const GraphComponent = () => {
   const [graphActive, setGraphActive] = useState(false)
   const graphData = createGraphData(nodes)
   const events = {
-    select: navigation(graphData, graphActive),
+    select: navigation(graphData),
   }
 
   return (
-    <Container onClick={() => setGraphActive(true)}>
+    <Container onClick={() => setGraphActive(!graphActive)}>
       <Graph
         graph={graphData}
         options={options(graphActive)}
         events={events}
         getNetwork={network => focusNode(network, nodes)}
       />
-      {!graphActive ? <p>Tap or click to toggle navigation</p> : null}
+      {!graphActive ? (
+        <p>Tap or click to toggle moving and scrolling graph</p>
+      ) : null}
     </Container>
   )
 }
