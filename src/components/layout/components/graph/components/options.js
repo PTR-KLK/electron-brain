@@ -1,10 +1,13 @@
 const options = graphActive => ({
+  height: "100%",
+  width: "100%",
+  autoResize: true,
   layout: {
     improvedLayout: true,
     randomSeed: 1,
   },
   edges: {
-    color: "#000000",
+    color: "#ffffff",
     chosen: false,
     arrows: {
       to: false,
@@ -15,9 +18,10 @@ const options = graphActive => ({
     fixed: true,
     shape: "square",
     size: 6,
-    color: "#000000",
+    color: "#ffffff",
     font: {
-      background: "#ffffff",
+      color: "#ffffff",
+      background: "#000000",
       face: "monospace",
     },
   },
@@ -28,8 +32,6 @@ const options = graphActive => ({
     dragView: graphActive,
     zoomView: graphActive,
   },
-  height: "300px",
-  autoResize: true,
 })
 
 export default options

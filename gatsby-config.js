@@ -3,6 +3,7 @@ module.exports = {
     title: `Electron Brain`,
     description: `A simple page with electron brain`,
     author: `ptr-klk`,
+    year: "2020",
   },
   plugins: [
     {

@@ -9,16 +9,20 @@ import options from "./components/options"
 
 const Container = styled.div`
   position: absolute;
+  top: 0;
   left: 0;
   width: 100%;
+  height: 50vh;
+  background-color: #000000;
 
   p {
     position: absolute;
     left: 0;
     bottom: 0;
-    margin: 1rem;
+    margin: 0.5rem 1rem;
     font-family: monospace;
-    background: #ffffff;
+    color: #ffffff;
+    background: #000000;
   }
 
   canvas:focus,
