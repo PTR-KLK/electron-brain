@@ -1,31 +1,35 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import styled from "styled-components"
+import { graphql } from "gatsby"
 import Layout from "../components/layout/layout"
 import Seo from "../components/seo"
+import Favourites from "../components/favourites"
+import Latest from "../components/latest"
+
+const Columns = styled.section`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  margin: 1rem 0;
+
+  @media (min-width: 768px) {
+    justify-content: space-between;
+    flex-direction: row;
+  }
+`
 
 export default function Home({ data }) {
   const {
     site: { siteMetadata },
-    allMarkdownRemark: { edges: pages },
   } = data
 
   return (
     <Layout>
       <Seo title={siteMetadata.title} description={siteMetadata.description} />
-      <h2>Latest updates in the {siteMetadata.title}:</h2>
-      <ul>
-        {pages.map(({ node }) => (
-          <li key={node.id}>
-            <Link to={node.fields.slug}>
-              <h3>
-                {node.frontmatter.title}{" "}
-                <span>— {node.fields.modifiedTime.slice(0, 10)}</span>
-              </h3>
-              <p>{node.frontmatter.excerpt || node.excerpt}</p>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <Columns>
+        <Latest />
+        <Favourites />
+      </Columns>
     </Layout>
   )
 }
@@ -36,25 +40,6 @@ export const query = graphql`
       siteMetadata {
         title
         description
-      }
-    }
-    allMarkdownRemark(
-      limit: 10
-      sort: { fields: fields___modifiedTime, order: DESC }
-    ) {
-      edges {
-        node {
-          id
-          frontmatter {
-            title
-            excerpt
-          }
-          fields {
-            slug
-            modifiedTime
-          }
-          excerpt
-        }
       }
     }
   }
