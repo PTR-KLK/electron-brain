@@ -3,8 +3,7 @@ import styled from "styled-components"
 import { graphql } from "gatsby"
 import Layout from "../components/layout/layout"
 import Seo from "../components/seo"
-import Favourites from "../components/favourites"
-import Latest from "../components/latest"
+import List from "../components/list"
 
 const Columns = styled.section`
   display: flex;
@@ -21,14 +20,18 @@ const Columns = styled.section`
 export default function Home({ data }) {
   const {
     site: { siteMetadata },
+    latest: { edges: latest },
+    favourites: { edges: favourites },
   } = data
+
+  console.log(latest, favourites)
 
   return (
     <Layout>
       <Seo title={siteMetadata.title} description={siteMetadata.description} />
       <Columns>
-        <Latest />
-        <Favourites />
+        <List list={latest} heading="Latest updates:" details />
+        <List list={favourites} heading="Favourite parts:" />
       </Columns>
     </Layout>
   )
@@ -40,6 +43,43 @@ export const query = graphql`
       siteMetadata {
         title
         description
+      }
+    }
+    latest: allMarkdownRemark(
+      limit: 10
+      sort: { fields: fields___modifiedTime, order: DESC }
+    ) {
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            excerpt
+          }
+          fields {
+            slug
+            modifiedTime
+          }
+          excerpt
+        }
+      }
+    }
+    favourites: allMarkdownRemark(
+      filter: { frontmatter: { favourite: { eq: true } } }
+    ) {
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            excerpt
+          }
+          fields {
+            slug
+            modifiedTime
+          }
+          excerpt
+        }
       }
     }
   }

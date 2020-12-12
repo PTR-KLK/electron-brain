@@ -18,17 +18,15 @@ const Heading = styled.h2`
 `
 
 const ListItem = ({ data, details }) => {
-  const { node } = data
-
   return (
-    <li key={node.id}>
+    <li>
       <h3>
         {details ? (
-          <span>{node.fields.modifiedTime.slice(0, 10)} — </span>
+          <span>{data.fields.modifiedTime.slice(0, 10)} — </span>
         ) : null}
-        <Link to={node.fields.slug}>{node.frontmatter.title} </Link>
+        <Link to={data.fields.slug}>{data.frontmatter.title} </Link>
       </h3>
-      {details ? <p>{node.frontmatter.excerpt || node.excerpt}</p> : null}
+      {details ? <p>{data.frontmatter.excerpt || data.excerpt}</p> : null}
     </li>
   )
 }
@@ -37,8 +35,8 @@ export default function List({ list, heading, details }) {
   return (
     <Container>
       <Heading>{heading}</Heading>
-      {list.map(el => (
-        <ListItem data={el} details={details} />
+      {list.map(({ node }) => (
+        <ListItem data={node} key={node.id} details={details} />
       ))}
     </Container>
   )
