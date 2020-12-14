@@ -3,9 +3,6 @@ import styled from "styled-components"
 import { useStaticQuery, graphql } from "gatsby"
 
 const Container = styled.footer`
-  position: relative;
-  left: 0;
-  top: 50vh;
   text-align: center;
 
   p {

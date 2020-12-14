@@ -1,46 +1,40 @@
-import React, { Suspense } from "react"
+import React from "react"
 import styled, { createGlobalStyle } from "styled-components"
-
 import Navbar from "./components/navbar"
 import Footer from "./components/footer"
-import Fallback from "./components/fallback"
-
-const Graph = React.lazy(() => import("./components/graph/graph"))
+import Hero from "./components/hero"
 
 const GlobalStyle = createGlobalStyle`
   body,html {
     margin: 0;
     padding: 0;
-}
-`
-
-const Main = styled.main`
-  position: relative;
-  top: 50vh;
-  margin: 0;
-  padding: 0 1rem;
-  max-width: 768px;
-  min-height: calc(50vh - 3.5rem);
-
-  @media (min-width: 768px) {
-    margin: 0 auto;
   }
 `
 
-export default function Layout({ children }) {
-  const isSSR = typeof window === "undefined"
+const Container = styled.main`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`
 
+const Article = styled.article`
+  width: calc(100% - 2rem);
+  max-width: 768px;
+  height: 100%;
+  min-height: calc(
+    ${props => (props.height ? `${100 - props.height}vh` : "50vh")} - 2.25rem
+  );
+`
+
+export default function Layout({ children, heroHeight }) {
   return (
-    <>
+    <Container>
       <GlobalStyle />
       <Navbar />
-      {!isSSR && (
-        <Suspense fallback={<Fallback />}>
-          <Graph />
-        </Suspense>
-      )}
-      <Main>{children}</Main>
+      <Hero height={heroHeight} />
+      <Article height={heroHeight}>{children}</Article>
       <Footer />
-    </>
+    </Container>
   )
 }

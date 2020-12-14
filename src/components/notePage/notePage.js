@@ -8,7 +8,7 @@ export default function NotePage({ data }) {
   const note = data.markdownRemark
 
   return (
-    <Layout>
+    <Layout heroHeight={25}>
       <Seo
         title={note.frontmatter.title}
         description={note.frontmatter.excerpt}

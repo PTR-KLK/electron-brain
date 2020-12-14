@@ -24,8 +24,6 @@ export default function Home({ data }) {
     favourites: { edges: favourites },
   } = data
 
-  console.log(latest, favourites)
-
   return (
     <Layout>
       <Seo title={siteMetadata.title} description={siteMetadata.description} />
