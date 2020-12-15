@@ -4,6 +4,7 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout/layout"
 import Seo from "../components/seo"
 import List from "../components/list"
+import Graph from "../components/graph/graphWrapper"
 
 const Columns = styled.section`
   display: flex;
@@ -22,16 +23,23 @@ export default function Home({ data }) {
     site: { siteMetadata },
     latest: { edges: latest },
     favourites: { edges: favourites },
+    graph: { nodes: graph },
   } = data
 
   return (
-    <Layout>
-      <Seo title={siteMetadata.title} description={siteMetadata.description} />
-      <Columns>
-        <List list={latest} heading="Latest updates:" details />
-        <List list={favourites} heading="Favourite parts:" />
-      </Columns>
-    </Layout>
+    <>
+      <Graph data={graph} />
+      <Layout>
+        <Seo
+          title={siteMetadata.title}
+          description={siteMetadata.description}
+        />
+        <Columns>
+          <List list={latest} heading="Latest updates:" details />
+          <List list={favourites} heading="Favourite parts:" />
+        </Columns>
+      </Layout>
+    </>
   )
 }
 
@@ -41,6 +49,33 @@ export const query = graphql`
       siteMetadata {
         title
         description
+      }
+    }
+    graph: allMarkdownRemark {
+      nodes {
+        id
+        frontmatter {
+          title
+        }
+        fields {
+          slug
+        }
+        outboundReferences {
+          ... on MarkdownRemark {
+            id
+            frontmatter {
+              title
+            }
+          }
+        }
+        inboundReferences {
+          ... on MarkdownRemark {
+            id
+            frontmatter {
+              title
+            }
+          }
+        }
       }
     }
     latest: allMarkdownRemark(

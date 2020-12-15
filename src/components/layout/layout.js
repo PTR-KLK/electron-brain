@@ -2,7 +2,6 @@ import React from "react"
 import styled, { createGlobalStyle } from "styled-components"
 import Navbar from "./components/navbar"
 import Footer from "./components/footer"
-import Hero from "./components/hero"
 
 const GlobalStyle = createGlobalStyle`
   body,html {
@@ -32,7 +31,6 @@ export default function Layout({ children, heroHeight }) {
     <Container>
       <GlobalStyle />
       <Navbar />
-      <Hero height={heroHeight} />
       <Article height={heroHeight}>{children}</Article>
       <Footer />
     </Container>
