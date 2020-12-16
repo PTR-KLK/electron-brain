@@ -2,14 +2,22 @@ import React from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
 
-const Container = styled.ul`
+const Container = styled.div`
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: calc(50% - 0.5rem);
+  }
+`
+
+const Ul = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
   width: 100%;
 
   @media (min-width: 768px) {
-    width: calc(50% - 0.5rem);
+    width: calc(100% - 0.5rem);
   }
 `
 
@@ -35,9 +43,11 @@ export default function List({ list, heading, details }) {
   return (
     <Container>
       <Heading>{heading}</Heading>
-      {list.map(({ node }) => (
-        <ListItem data={node} key={node.id} details={details} />
-      ))}
+      <Ul>
+        {list.map(({ node }) => (
+          <ListItem data={node} key={node.id} details={details} />
+        ))}
+      </Ul>
     </Container>
   )
 }

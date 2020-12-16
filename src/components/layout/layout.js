@@ -7,6 +7,8 @@ const GlobalStyle = createGlobalStyle`
   body,html {
     margin: 0;
     padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #FFFAFF;
   }
 `
 
@@ -15,23 +17,16 @@ const Container = styled.main`
   flex-direction: column;
   align-items: center;
   width: 100%;
-`
-
-const Article = styled.article`
-  width: calc(100% - 2rem);
-  max-width: 768px;
   height: 100%;
-  min-height: calc(
-    ${props => (props.height ? `${100 - props.height}vh` : "50vh")} - 2.25rem
-  );
+  min-height: 100vh;
 `
 
-export default function Layout({ children, heroHeight }) {
+export default function Layout({ children }) {
   return (
     <Container>
       <GlobalStyle />
       <Navbar />
-      <Article height={heroHeight}>{children}</Article>
+      {children}
       <Footer />
     </Container>
   )

@@ -4,12 +4,13 @@ import { useStaticQuery, graphql } from "gatsby"
 
 const Container = styled.footer`
   text-align: center;
+  width: 100%;
+  max-width: 1024px;
 
   p {
-    font-family: monospace;
+    font-family: "Inconsolata", monospace;
     margin: 0.5rem 0 0;
     padding: 0 0 0.5rem;
-    font-size: 1.25rem;
   }
 `
 

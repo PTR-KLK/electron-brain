@@ -8,13 +8,15 @@ import Graph from "../components/graph/graphWrapper"
 
 const Columns = styled.section`
   display: flex;
-  width: 100%;
+  flex: 1;
+  width: calc(100% - 2rem);
   flex-direction: column;
   margin: 1rem 0;
 
   @media (min-width: 768px) {
     justify-content: space-between;
     flex-direction: row;
+    max-width: 1024px;
   }
 `
 
@@ -27,19 +29,14 @@ export default function Home({ data }) {
   } = data
 
   return (
-    <>
+    <Layout>
+      <Seo title={siteMetadata.title} description={siteMetadata.description} />
       <Graph data={graph} />
-      <Layout>
-        <Seo
-          title={siteMetadata.title}
-          description={siteMetadata.description}
-        />
-        <Columns>
-          <List list={latest} heading="Latest updates:" details />
-          <List list={favourites} heading="Favourite parts:" />
-        </Columns>
-      </Layout>
-    </>
+      <Columns>
+        <List list={latest} heading="Latest updates:" details />
+        <List list={favourites} heading="Favourite parts:" />
+      </Columns>
+    </Layout>
   )
 }
 

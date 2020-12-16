@@ -1,12 +1,18 @@
 import React from "react"
+import styled from "styled-components"
 import { Link } from "gatsby"
+
+const Container = styled.section`
+  width: calc(100% - 2rem);
+  max-width: 1024px;
+`
 
 export default function References({ arr, heading }) {
   if (arr.length === 0) return null
 
   return (
-    <section>
-      <h4>{heading}</h4>
+    <Container>
+      <p>{heading}</p>
       <ul>
         {arr.map(el => {
           return (
@@ -16,6 +22,6 @@ export default function References({ arr, heading }) {
           )
         })}
       </ul>
-    </section>
+    </Container>
   )
 }

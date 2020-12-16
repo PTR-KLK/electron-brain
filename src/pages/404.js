@@ -12,15 +12,13 @@ const Info = styled.div`
 
   h2 {
     align-self: center;
-    font-size: 3rem;
-    font-family: monospace;
+    font-family: "Inconsolata", monospace;
   }
 `
 
-const Message = styled.p`
+const Message = styled.h3`
   text-align: center;
-  font-size: 2rem;
-  font-family: monospace;
+  font-family: "Inconsolata", monospace;
 `
 export default function About() {
   return (

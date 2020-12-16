@@ -1,7 +1,6 @@
 const options = graphActive => ({
   height: "100%",
   width: "100%",
-  autoResize: true,
   layout: {
     improvedLayout: true,
     randomSeed: 1,
@@ -16,12 +15,12 @@ const options = graphActive => ({
   },
   nodes: {
     fixed: true,
-    shape: "square",
-    size: 6,
+    shape: "diamond",
+    size: 8,
     color: "#ffffff",
     font: {
       color: "#ffffff",
-      background: "#000000",
+      background: "#133C55",
       face: "monospace",
     },
   },

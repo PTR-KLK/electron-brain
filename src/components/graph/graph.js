@@ -1,29 +1,33 @@
 import React from "react"
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 import Graph from "react-graph-vis"
 import navigation from "./components/navigation"
 import createGraphData from "./components/createGraphData"
 import options from "./components/options"
 
+const reveal = keyframes`
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+`
+
 const Container = styled.figure`
+  animation: ${reveal} 1s linear forwards;
+  opacity: 0;
   position: relative;
   margin: 0;
   width: 100%;
-  height: 100%;
+  height: auto;
 
   p {
-    font-family: monospace;
     position: absolute;
-    background-color: #000000;
-    font-size: 1rem;
     margin: 1rem;
     bottom: 0;
     left: 0;
-  }
-
-  canvas:focus,
-  .vis-network:focus {
-    outline: none;
   }
 `
 

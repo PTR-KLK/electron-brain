@@ -7,14 +7,14 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   height: ${props => (props.height ? `${props.height}vh` : "50vh")};
-  background-color: #000000;
+  background: #133c55;
   color: #ffffff;
   justify-content: center;
 
   p {
     align-self: center;
-    font-family: monospace;
-    font-size: 1.5rem;
+    font-family: "Inconsolata", monospace;
+    background-color: #133c55;
   }
 `
 

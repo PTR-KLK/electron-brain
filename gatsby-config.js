@@ -104,6 +104,13 @@ module.exports = {
         excludePattern: /(excluded-link|external)/,
       },
     },
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [`Montserrat`, `Inconsolata`],
+        display: "swap",
+      },
+    },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
