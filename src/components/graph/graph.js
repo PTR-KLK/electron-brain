@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import styled, { keyframes } from "styled-components"
 import Graph from "react-graph-vis"
 import navigation from "./components/navigation"
@@ -32,14 +32,35 @@ const Container = styled.figure`
 `
 
 const GraphComponent = ({ graphActive, data }) => {
+  const [network, setNetwork] = useState({})
   const graphData = createGraphData(data)
   const events = {
     select: navigation(graphData),
   }
 
+  useEffect(() => {
+    const handleResize = () => {
+      network.redraw()
+      network.fit()
+    }
+
+    window.addEventListener("resize", handleResize)
+
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [network])
+
   return (
     <Container>
-      <Graph graph={graphData} options={options(graphActive)} events={events} />
+      <Graph
+        graph={graphData}
+        options={options(graphActive)}
+        events={events}
+        getNetwork={network => {
+          setNetwork(network)
+        }}
+      />
       {!graphActive ? <p>Tap or click to zoom or move</p> : null}
     </Container>
   )
