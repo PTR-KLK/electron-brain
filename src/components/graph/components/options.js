@@ -1,3 +1,5 @@
+import colors from "../../colors"
+
 const options = graphActive => ({
   height: "100%",
   width: "100%",
@@ -6,7 +8,7 @@ const options = graphActive => ({
     randomSeed: 1,
   },
   edges: {
-    color: "#ffffff",
+    color: colors.secondary,
     chosen: false,
     arrows: {
       to: false,
@@ -15,13 +17,13 @@ const options = graphActive => ({
   },
   nodes: {
     fixed: true,
-    shape: "diamond",
-    size: 8,
-    color: "#ffffff",
+    shape: "square",
+    size: 6,
+    color: colors.tertiary,
     font: {
-      color: "#ffffff",
-      background: "#133C55",
-      face: "monospace",
+      color: colors.light,
+      background: colors.primary,
+      face: "Inconsolata",
     },
   },
   physics: {

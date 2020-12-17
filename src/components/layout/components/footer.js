@@ -1,17 +1,18 @@
 import React from "react"
 import styled from "styled-components"
+import colors from "../../colors"
 import { useStaticQuery, graphql } from "gatsby"
 
 const Container = styled.footer`
   text-align: center;
   width: 100%;
-  max-width: 1024px;
-
-  p {
-    font-family: "Inconsolata", monospace;
-    margin: 0.5rem 0 0;
-    padding: 0 0 0.5rem;
-  }
+  background: ${colors.primary};
+  color: ${colors.light};
+  font-family: "Inconsolata", monospace;
+  margin: 0.5rem 0 0;
+  padding: 0.5rem 0;
+  font-size: 1.25rem;
+  box-shadow: 4px -4px 0px 0px ${colors.secondary};
 `
 
 export default function Footer() {
@@ -34,9 +35,7 @@ export default function Footer() {
 
   return (
     <Container>
-      <p>
-        © {author} {year}
-      </p>
+      ©{author} {year}
     </Container>
   )
 }

@@ -29,6 +29,11 @@ const Container = styled.figure`
     bottom: 0;
     left: 0;
   }
+
+  canvas:focus,
+  .vis-network:focus {
+    outline: none;
+  }
 `
 
 const GraphComponent = ({ graphActive, data }) => {

@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import colors from "../../colors"
 import { useStaticQuery, Link, graphql } from "gatsby"
 
 const Container = styled.nav`
@@ -22,8 +23,21 @@ const Container = styled.nav`
   a {
     text-decoration: none;
     margin: 0;
+    padding: 0.25rem 0.5rem;
     font-family: "Inconsolata", monospace;
-    color: #000000;
+    font-weight: bold;
+    color: ${colors.light};
+    background: ${colors.primary};
+    box-shadow: 0.25rem 0.25rem 0px 0px ${colors.secondary};
+  }
+
+  a:visited {
+    color: ${colors.light};
+  }
+
+  a:hover {
+    color: ${colors.tertiary};
+    box-shadow: 0.25rem 0.25rem 0px 0px ${colors.accent};
   }
 `
 
