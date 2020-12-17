@@ -1,6 +1,8 @@
 import React, { useState, Suspense } from "react"
 import styled from "styled-components"
 import colors from "../colors"
+import shadow from "../shadow"
+import { hover } from "../animations"
 
 const Graph = React.lazy(() => import("./graph"))
 
@@ -11,12 +13,21 @@ const Container = styled.div`
   background: ${colors.primary};
   color: ${colors.light};
   justify-content: center;
-  box-shadow: 0.25rem 0.25rem 0px 0px ${colors.secondary};
+  box-shadow: ${shadow};
 
   p {
     align-self: center;
     font-family: "Inconsolata", monospace;
     background-color: ${colors.primary};
+  }
+
+  canvas:focus,
+  .vis-network:focus {
+    outline: none;
+  }
+
+  &:hover {
+    animation: ${hover} 125ms linear forwards;
   }
 `
 

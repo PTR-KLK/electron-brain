@@ -8,6 +8,7 @@ const options = graphActive => ({
     randomSeed: 1,
   },
   edges: {
+    width: 2,
     color: colors.secondary,
     chosen: false,
     arrows: {
@@ -18,12 +19,24 @@ const options = graphActive => ({
   nodes: {
     fixed: true,
     shape: "square",
-    size: 6,
-    color: colors.tertiary,
+    size: 8,
+    color: {
+      border: colors.tertiary,
+      background: colors.tertiary,
+      highlight: {
+        border: colors.accent,
+        background: colors.accent,
+      },
+      hover: {
+        border: colors.accent,
+        background: colors.accent,
+      },
+    },
     font: {
       color: colors.light,
       background: colors.primary,
       face: "Inconsolata",
+      size: 16,
     },
   },
   physics: {
@@ -32,6 +45,7 @@ const options = graphActive => ({
   interaction: {
     dragView: graphActive,
     zoomView: graphActive,
+    hover: true,
   },
 })
 

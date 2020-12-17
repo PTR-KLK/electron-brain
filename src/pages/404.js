@@ -10,6 +10,7 @@ const Info = styled.div`
   background-color: ${colors.primary};
   color: ${colors.light};
   justify-content: center;
+  box-shadow: 0.25rem 0.25rem 0px 0px ${colors.secondary};
 
   h2 {
     align-self: center;

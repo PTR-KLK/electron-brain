@@ -1,6 +1,8 @@
 import React from "react"
 import styled from "styled-components"
 import colors from "../../colors"
+import shadow from "../../shadow"
+import { hover } from "../../animations"
 import { useStaticQuery, Link, graphql } from "gatsby"
 
 const Container = styled.nav`
@@ -28,7 +30,7 @@ const Container = styled.nav`
     font-weight: bold;
     color: ${colors.light};
     background: ${colors.primary};
-    box-shadow: 0.25rem 0.25rem 0px 0px ${colors.secondary};
+    box-shadow: ${shadow};
   }
 
   a:visited {
@@ -36,8 +38,7 @@ const Container = styled.nav`
   }
 
   a:hover {
-    color: ${colors.tertiary};
-    box-shadow: 0.25rem 0.25rem 0px 0px ${colors.accent};
+    animation: ${hover} 125ms linear forwards;
   }
 `
 

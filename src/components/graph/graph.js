@@ -1,22 +1,13 @@
 import React, { useState, useEffect } from "react"
-import styled, { keyframes } from "styled-components"
+import styled from "styled-components"
 import Graph from "react-graph-vis"
 import navigation from "./components/navigation"
 import createGraphData from "./components/createGraphData"
 import options from "./components/options"
-
-const reveal = keyframes`
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-`
+import { reveal } from "../animations"
 
 const Container = styled.figure`
-  animation: ${reveal} 1s linear forwards;
+  animation: ${reveal} 500ms linear forwards;
   opacity: 0;
   position: relative;
   margin: 0;
@@ -28,11 +19,6 @@ const Container = styled.figure`
     margin: 1rem;
     bottom: 0;
     left: 0;
-  }
-
-  canvas:focus,
-  .vis-network:focus {
-    outline: none;
   }
 `
 
@@ -64,6 +50,13 @@ const GraphComponent = ({ graphActive, data }) => {
         events={events}
         getNetwork={network => {
           setNetwork(network)
+          network.on("hoverNode", function (params) {
+            network.canvas.body.container.style.cursor = "pointer"
+
+            network.on("blurNode", function (params) {
+              network.canvas.body.container.style.cursor = "default"
+            })
+          })
         }}
       />
       {!graphActive ? <p>Tap or click to zoom or move</p> : null}
