@@ -7,7 +7,7 @@ import options from "./components/options"
 import { reveal } from "../animations"
 
 const Container = styled.figure`
-  animation: ${reveal} 500ms linear forwards;
+  animation: ${reveal} 250ms linear forwards;
   opacity: 0;
   position: relative;
   margin: 0;

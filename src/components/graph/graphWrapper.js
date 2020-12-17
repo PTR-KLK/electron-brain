@@ -2,9 +2,9 @@ import React, { useState, Suspense } from "react"
 import styled from "styled-components"
 import colors from "../colors"
 import shadow from "../shadow"
-import { hover } from "../animations"
+import { hover, reveal } from "../animations"
 
-const Graph = React.lazy(() => import("./graph"))
+const Graph = React.lazy(() => fakeDelay(500)(import("./graph")))
 
 const Container = styled.div`
   width: 100%;
@@ -31,6 +31,23 @@ const Container = styled.div`
   }
 `
 
+const Fallback = styled.p`
+  font-size: 1.5rem;
+  animation: ${reveal} 250ms linear 250ms reverse forwards;
+`
+
+// https://stackoverflow.com/questions/54158994/react-suspense-lazy-delay
+
+function fakeDelay(ms) {
+  return promise =>
+    promise.then(
+      data =>
+        new Promise(resolve => {
+          setTimeout(() => resolve(data), ms)
+        })
+    )
+}
+
 export default function Hero({ height, data }) {
   const isSSR = typeof window === "undefined"
   const [graphActive, setGraphActive] = useState(false)
@@ -38,7 +55,7 @@ export default function Hero({ height, data }) {
   return (
     <Container height={height} onClick={() => setGraphActive(!graphActive)}>
       {!isSSR && (
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<Fallback>Loading...</Fallback>}>
           <Graph graphActive={graphActive} data={data} />
         </Suspense>
       )}
