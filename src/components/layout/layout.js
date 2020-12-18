@@ -34,7 +34,7 @@ const Container = styled.main`
   min-height: 100vh;
 `
 
-export default function Layout({ children }) {
+const Layout = ({ children }) => {
   return (
     <Container>
       <GlobalStyle />
@@ -44,3 +44,5 @@ export default function Layout({ children }) {
     </Container>
   )
 }
+
+export default Layout

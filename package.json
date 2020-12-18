@@ -23,6 +23,7 @@
     "gatsby-plugin-offline": "^3.6.0",
     "gatsby-plugin-react-helmet": "^3.6.0",
     "gatsby-plugin-styled-components": "^3.6.0",
+    "gatsby-plugin-webfonts": "^1.1.3",
     "gatsby-remark-double-brackets-link": "^0.1.7",
     "gatsby-source-filesystem": "^2.7.0",
     "gatsby-styled-components-dark-mode": "^1.3.0",

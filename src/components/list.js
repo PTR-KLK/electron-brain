@@ -38,8 +38,7 @@ const ListItem = ({ data, details }) => {
     </li>
   )
 }
-
-export default function List({ list, heading, details }) {
+const List = ({ list, heading, details }) => {
   return (
     <Container>
       <Heading>{heading}</Heading>
@@ -51,3 +50,5 @@ export default function List({ list, heading, details }) {
     </Container>
   )
 }
+
+export default List

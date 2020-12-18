@@ -6,7 +6,7 @@ import Article from "./components/article"
 import Graph from "../graph/graphWrapper"
 import Seo from "../seo"
 
-export default function NotePage({ data }) {
+const NotePage = ({ data }) => {
   const note = data.markdownRemark
 
   return (
@@ -59,3 +59,5 @@ export const query = graphql`
     }
   }
 `
+
+export default NotePage

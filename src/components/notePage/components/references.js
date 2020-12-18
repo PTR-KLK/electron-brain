@@ -23,7 +23,7 @@ const Container = styled.section`
   }
 `
 
-export default function References({ arr, heading }) {
+const References = ({ arr, heading }) => {
   if (arr.length === 0) return null
 
   return (
@@ -41,3 +41,5 @@ export default function References({ arr, heading }) {
     </Container>
   )
 }
+
+export default References

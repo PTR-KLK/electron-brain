@@ -24,7 +24,7 @@ const Message = styled.h3`
   font-family: "Inconsolata", monospace;
   flex: 1;
 `
-export default function About() {
+const NotFound = () => {
   return (
     <Layout>
       <Info>
@@ -34,3 +34,5 @@ export default function About() {
     </Layout>
   )
 }
+
+export default NotFound

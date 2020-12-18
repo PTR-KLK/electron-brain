@@ -20,7 +20,7 @@ const Columns = styled.section`
   }
 `
 
-export default function Home({ data }) {
+const Home = ({ data }) => {
   const {
     site: { siteMetadata },
     latest: { edges: latest },
@@ -114,3 +114,4 @@ export const query = graphql`
     }
   }
 `
+export default Home

@@ -105,10 +105,22 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-fonts`,
+      resolve: `gatsby-plugin-webfonts`,
       options: {
-        fonts: [`Montserrat`, `Inconsolata`],
-        display: "swap",
+        fonts: {
+          google: [
+            {
+              family: "Montserrat",
+              variants: ["400", "700"],
+            },
+            {
+              family: "Inconsolata",
+              variants: ["400", "700"],
+            },
+          ],
+        },
+        useMinify: true,
+        usePreload: true,
       },
     },
     {

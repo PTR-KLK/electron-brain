@@ -47,7 +47,7 @@ function fakeDelay(ms) {
     )
 }
 
-export default function Hero({ height, data }) {
+const GraphWrapper = ({ height, data }) => {
   const isSSR = typeof window === "undefined"
   const [graphActive, setGraphActive] = useState(false)
 
@@ -61,3 +61,5 @@ export default function Hero({ height, data }) {
     </Container>
   )
 }
+
+export default GraphWrapper

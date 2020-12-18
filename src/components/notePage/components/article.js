@@ -7,8 +7,7 @@ const Container = styled.article`
   flex: 1;
   max-width: 1024px;
 `
-
-export default function Article({ data }) {
+const Article = ({ data }) => {
   const {
     html,
     frontmatter: { title },
@@ -21,3 +20,5 @@ export default function Article({ data }) {
     </Container>
   )
 }
+
+export default Article

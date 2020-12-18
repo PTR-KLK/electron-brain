@@ -41,7 +41,7 @@ const Container = styled.footer`
   }
 `
 
-export default function Footer(props) {
+const Footer = () => {
   const themeContext = useContext(ThemeManagerContext)
 
   const {
@@ -77,3 +77,5 @@ export default function Footer(props) {
     </Container>
   )
 }
+
+export default Footer

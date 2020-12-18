@@ -42,7 +42,7 @@ const Container = styled.nav`
   }
 `
 
-export default function Navbar() {
+const Navbar = () => {
   const {
     site: {
       siteMetadata: { title },
@@ -68,3 +68,5 @@ export default function Navbar() {
     </Container>
   )
 }
+
+export default Navbar
