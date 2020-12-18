@@ -5,7 +5,6 @@ const Container = styled.article`
   width: calc(100% - 2rem);
   height: 100%;
   flex: 1;
-  max-width: 1024px;
 `
 const Article = ({ data }) => {
   const {

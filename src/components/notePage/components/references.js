@@ -1,25 +1,22 @@
 import React from "react"
 import styled from "styled-components"
-import { shadow, hover } from "../../theme"
+import { sectionContainer } from "../../theme"
 import { Link } from "gatsby"
 
 const Container = styled.section`
-  width: calc(100% - 4rem);
-  max-width: 1024px;
-  border: 2px solid ${props => props.theme.text};
-  background: ${props => props.theme.primary};
-  padding: 1rem;
+  width: calc(100% - 2px - 2rem);
+  flex-direction: column;
+  padding: 1rem 0;
   margin: 0 0 1rem;
-  box-shadow: ${props => shadow(props.theme.secondary)};
-
-  &:hover {
-    animation: ${props => hover(props.theme.secondary, props.theme.accent)}
-      125ms linear forwards;
-  }
+  ${({ theme }) => sectionContainer(theme)}
 
   p {
-    margin-top: 0;
+    margin: 0 1rem;
     font-weight: bold;
+  }
+
+  ul {
+    margin: 1rem 1rem 0;
   }
 `
 

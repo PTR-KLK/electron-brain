@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
 
-const Container = styled.div`
+const Container = styled.section`
   width: 100%;
 
   @media (min-width: 768px) {

@@ -1,19 +1,16 @@
 import React, { useContext } from "react"
 import styled from "styled-components"
 import { ThemeManagerContext } from "gatsby-styled-components-dark-mode"
-import { shadow, hover } from "../../theme"
+import { sectionContainer } from "../../theme"
 import { useStaticQuery, graphql } from "gatsby"
 
 const Container = styled.footer`
-  display: flex;
+  ${({ theme }) => sectionContainer(theme)}
   flex-direction: column;
   align-items: center;
-  width: calc(100% - 4px - 2rem);
-  background: ${props => props.theme.primary};
-  border: 2px solid ${props => props.theme.text};
+  width: calc(100% - 2px - 2rem);
   margin: 0.5rem 0 0.5rem;
   padding: 0.5rem 0;
-  box-shadow: ${props => shadow(props.theme.secondary)};
 
   p,
   label {
@@ -23,11 +20,6 @@ const Container = styled.footer`
 
   p {
     margin: 0.5rem 0 0;
-  }
-
-  &:hover {
-    animation: ${props => hover(props.theme.secondary, props.theme.accent)}
-      125ms linear forwards;
   }
 
   @media (min-width: 768px) {
@@ -62,7 +54,7 @@ const Footer = () => {
   )
 
   return (
-    <Container>
+    <Container role="contentinfo">
       <label>
         <input
           type="checkbox"

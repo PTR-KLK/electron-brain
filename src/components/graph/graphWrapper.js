@@ -1,17 +1,14 @@
 import React, { useState, Suspense } from "react"
 import styled from "styled-components"
-import { shadow, hover, reveal } from "../theme"
+import { sectionContainer, reveal } from "../theme"
 
 const Graph = React.lazy(() => fakeDelay(500)(import("./graph")))
 
-const Container = styled.div`
-  width: calc(100% - 4px - 2rem);
-  display: flex;
+const Container = styled.section`
+  width: calc(100% - 2px - 2rem);
   height: ${props => (props.height ? `${props.height}vh` : "50vh")};
-  background: ${props => props.theme.primary};
-  border: 2px solid ${props => props.theme.text};
   justify-content: center;
-  box-shadow: ${props => shadow(props.theme.secondary)};
+  ${({ theme }) => sectionContainer(theme)}
 
   p {
     align-self: center;
@@ -22,11 +19,6 @@ const Container = styled.div`
   canvas:focus,
   .vis-network:focus {
     outline: none;
-  }
-
-  &:hover {
-    animation: ${props => hover(props.theme.secondary, props.theme.accent)}
-      125ms linear forwards;
   }
 `
 

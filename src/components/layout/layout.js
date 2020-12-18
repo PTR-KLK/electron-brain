@@ -12,6 +12,10 @@ const GlobalStyle = createGlobalStyle`
     color: ${props => props.theme.text};
   }
 
+  h1, h2, h3, h4, h5 {
+    font-family: "Inconsolata", monospace;
+  }
+
   a {
     color: ${props => props.theme.text};
   }
@@ -30,8 +34,10 @@ const Container = styled.main`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  max-width: 1024px;
   height: 100%;
   min-height: 100vh;
+  margin: 0 auto;
 `
 
 const Layout = ({ children }) => {
