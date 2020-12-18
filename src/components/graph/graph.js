@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react"
-import styled from "styled-components"
+import styled, { withTheme } from "styled-components"
 import Graph from "react-graph-vis"
 import navigation from "./components/navigation"
 import createGraphData from "./components/createGraphData"
 import options from "./components/options"
-import { reveal } from "../animations"
+import { reveal } from "../theme"
 
 const Container = styled.figure`
   animation: ${reveal} 250ms linear forwards;
@@ -22,7 +22,7 @@ const Container = styled.figure`
   }
 `
 
-const GraphComponent = ({ graphActive, data }) => {
+const GraphComponent = withTheme(({ graphActive, data, theme }) => {
   const [network, setNetwork] = useState({})
   const graphData = createGraphData(data)
   const events = {
@@ -46,7 +46,7 @@ const GraphComponent = ({ graphActive, data }) => {
     <Container>
       <Graph
         graph={graphData}
-        options={options(graphActive)}
+        options={options(graphActive, theme)}
         events={events}
         getNetwork={network => {
           setNetwork(network)
@@ -62,6 +62,6 @@ const GraphComponent = ({ graphActive, data }) => {
       {!graphActive ? <p>Tap or click to zoom or move</p> : null}
     </Container>
   )
-}
+})
 
 export default GraphComponent

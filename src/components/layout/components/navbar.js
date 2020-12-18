@@ -1,8 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import colors from "../../colors"
-import shadow from "../../shadow"
-import { hover } from "../../animations"
+import { shadow, hover } from "../../theme"
 import { useStaticQuery, Link, graphql } from "gatsby"
 
 const Container = styled.nav`
@@ -28,17 +26,19 @@ const Container = styled.nav`
     padding: 0.25rem 0.5rem;
     font-family: "Inconsolata", monospace;
     font-weight: bold;
-    color: ${colors.light};
-    background: ${colors.primary};
-    box-shadow: ${shadow};
+    border: 2px solid ${props => props.theme.text};
+    background: ${props => props.theme.primary};
+    box-shadow: ${props => shadow(props.theme.secondary)};
   }
 
   a:visited {
-    color: ${colors.light};
+    color: ${props => props.theme.text};
   }
 
   a:hover {
-    animation: ${hover} 125ms linear forwards;
+    color: ${props => props.theme.accent};
+    animation: ${props => hover(props.theme.secondary, props.theme.accent)}
+      125ms linear forwards;
   }
 `
 

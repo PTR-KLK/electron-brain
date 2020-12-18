@@ -1,33 +1,20 @@
 import React from "react"
 import styled from "styled-components"
-import colors from "../../colors"
-import shadow from "../../shadow"
-import { hover } from "../../animations"
+import { shadow, hover } from "../../theme"
 import { Link } from "gatsby"
 
 const Container = styled.section`
   width: calc(100% - 4rem);
   max-width: 1024px;
-  color: ${colors.light};
-  background: ${colors.primary};
+  border: 2px solid ${props => props.theme.text};
+  background: ${props => props.theme.primary};
   padding: 1rem;
   margin: 0 0 1rem;
-  box-shadow: ${shadow};
+  box-shadow: ${props => shadow(props.theme.secondary)};
 
   &:hover {
-    animation: ${hover} 125ms linear forwards;
-  }
-
-  a:link {
-    color: ${colors.light};
-  }
-
-  a:visited {
-    color: ${colors.secondary};
-  }
-
-  a:hover {
-    color: ${colors.tertiary};
+    animation: ${props => hover(props.theme.secondary, props.theme.accent)}
+      125ms linear forwards;
   }
 
   p {

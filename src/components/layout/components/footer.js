@@ -1,21 +1,49 @@
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
-import colors from "../../colors"
+import { ThemeManagerContext } from "gatsby-styled-components-dark-mode"
+import { shadow, hover } from "../../theme"
 import { useStaticQuery, graphql } from "gatsby"
 
 const Container = styled.footer`
-  text-align: center;
-  width: 100%;
-  background: ${colors.primary};
-  color: ${colors.light};
-  font-family: "Inconsolata", monospace;
-  margin: 0.5rem 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(100% - 4px - 2rem);
+  background: ${props => props.theme.primary};
+  border: 2px solid ${props => props.theme.text};
+  margin: 0.5rem 0 0.5rem;
   padding: 0.5rem 0;
-  font-size: 1.25rem;
-  box-shadow: 4px -4px 0px 0px ${colors.secondary};
+  box-shadow: ${props => shadow(props.theme.secondary)};
+
+  p,
+  label {
+    font-size: 1.25rem;
+    font-family: "Inconsolata", monospace;
+  }
+
+  p {
+    margin: 0.5rem 0 0;
+  }
+
+  &:hover {
+    animation: ${props => hover(props.theme.secondary, props.theme.accent)}
+      125ms linear forwards;
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+
+    p,
+    label {
+      margin: 0 0.5rem;
+    }
+  }
 `
 
-export default function Footer() {
+export default function Footer(props) {
+  const themeContext = useContext(ThemeManagerContext)
+
   const {
     site: {
       siteMetadata: { author, year },
@@ -35,7 +63,17 @@ export default function Footer() {
 
   return (
     <Container>
-      ©{author} {year}
+      <label>
+        <input
+          type="checkbox"
+          onChange={() => themeContext.toggleDark()}
+          checked={themeContext.isDark}
+        />{" "}
+        Dark mode
+      </label>
+      <p>
+        ©{author} {year}
+      </p>
     </Container>
   )
 }

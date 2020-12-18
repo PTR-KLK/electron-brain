@@ -1,6 +1,5 @@
 import React from "react"
 import styled, { createGlobalStyle } from "styled-components"
-import colors from "../colors"
 import Navbar from "./components/navbar"
 import Footer from "./components/footer"
 
@@ -9,20 +8,20 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
-    background: ${colors.light};
-    color: ${colors.dark};
+    background: ${props => props.theme.body};
+    color: ${props => props.theme.text};
   }
 
   a {
-    color: ${colors.primary};
+    color: ${props => props.theme.text};
   }
 
   a:visited {
-    color: ${colors.secondary};
+    color: ${props => props.theme.secondary};
   }
 
   a:hover, a:active {
-    color: ${colors.tertiary};
+    color: ${props => props.theme.accent};
   }
 `
 

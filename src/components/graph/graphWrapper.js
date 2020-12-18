@@ -1,24 +1,22 @@
 import React, { useState, Suspense } from "react"
 import styled from "styled-components"
-import colors from "../colors"
-import shadow from "../shadow"
-import { hover, reveal } from "../animations"
+import { shadow, hover, reveal } from "../theme"
 
 const Graph = React.lazy(() => fakeDelay(500)(import("./graph")))
 
 const Container = styled.div`
-  width: 100%;
+  width: calc(100% - 4px - 2rem);
   display: flex;
   height: ${props => (props.height ? `${props.height}vh` : "50vh")};
-  background: ${colors.primary};
-  color: ${colors.light};
+  background: ${props => props.theme.primary};
+  border: 2px solid ${props => props.theme.text};
   justify-content: center;
-  box-shadow: ${shadow};
+  box-shadow: ${props => shadow(props.theme.secondary)};
 
   p {
     align-self: center;
     font-family: "Inconsolata", monospace;
-    background-color: ${colors.primary};
+    background-color: ${props => props.theme.primary};
   }
 
   canvas:focus,
@@ -27,7 +25,8 @@ const Container = styled.div`
   }
 
   &:hover {
-    animation: ${hover} 125ms linear forwards;
+    animation: ${props => hover(props.theme.secondary, props.theme.accent)}
+      125ms linear forwards;
   }
 `
 

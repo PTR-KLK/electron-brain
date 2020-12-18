@@ -1,6 +1,4 @@
-import colors from "../../colors"
-
-const options = graphActive => ({
+const options = (graphActive, theme) => ({
   height: "100%",
   width: "100%",
   layout: {
@@ -9,7 +7,7 @@ const options = graphActive => ({
   },
   edges: {
     width: 2,
-    color: colors.secondary,
+    color: theme.secondary,
     chosen: false,
     arrows: {
       to: false,
@@ -21,20 +19,20 @@ const options = graphActive => ({
     shape: "square",
     size: 8,
     color: {
-      border: colors.tertiary,
-      background: colors.tertiary,
+      border: theme.text,
+      background: theme.text,
       highlight: {
-        border: colors.accent,
-        background: colors.accent,
+        border: theme.accent,
+        background: theme.accent,
       },
       hover: {
-        border: colors.accent,
-        background: colors.accent,
+        border: theme.accent,
+        background: theme.accent,
       },
     },
     font: {
-      color: colors.light,
-      background: colors.primary,
+      color: theme.text,
+      background: theme.primary,
       face: "Inconsolata",
       size: 16,
     },

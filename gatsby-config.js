@@ -111,6 +111,13 @@ module.exports = {
         display: "swap",
       },
     },
+    {
+      resolve: `gatsby-styled-components-dark-mode`,
+      options: {
+        light: require(`${__dirname}/theme.js`).lightTheme,
+        dark: require(`${__dirname}/theme.js`).darkTheme,
+      },
+    },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,

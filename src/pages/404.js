@@ -1,16 +1,17 @@
 import React from "react"
 import Layout from "../components/layout/layout"
 import styled from "styled-components"
-import colors from "../components/colors"
+import { shadow } from "../components/theme"
 
 const Info = styled.div`
-  width: 100%;
+  width: calc(100% - 4px - 2rem);
   display: flex;
   height: 50vh;
-  background-color: ${colors.primary};
-  color: ${colors.light};
+  background-color: ${props => props.theme.primary};
+  color: ${props => props.theme.text};
+  border: 2px solid ${props => props.theme.text};
+  box-shadow: ${props => shadow(props.theme.secondary)};
   justify-content: center;
-  box-shadow: 0.25rem 0.25rem 0px 0px ${colors.secondary};
 
   h2 {
     align-self: center;
