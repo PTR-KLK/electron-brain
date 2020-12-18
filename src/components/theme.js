@@ -11,6 +11,7 @@ const linkShadow = theme => `
 
 export const sectionContainer = theme => `
   display: flex;
+  width: calc(100% - 2px - 2rem);
   ${boxContainer(theme)};
 `
 

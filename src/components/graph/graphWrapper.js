@@ -5,8 +5,7 @@ import { sectionContainer, reveal } from "../theme"
 const Graph = React.lazy(() => fakeDelay(500)(import("./graph")))
 
 const Container = styled.section`
-  width: calc(100% - 2px - 2rem);
-  height: ${props => (props.height ? `${props.height}vh` : "50vh")};
+  height: 50vh;
   justify-content: center;
   ${({ theme }) => sectionContainer(theme)}
 

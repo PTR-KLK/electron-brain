@@ -4,7 +4,6 @@ import { sectionContainer } from "../../theme"
 import { Link } from "gatsby"
 
 const Container = styled.section`
-  width: calc(100% - 2px - 2rem);
   flex-direction: column;
   padding: 1rem 0;
   margin: 0 0 1rem;

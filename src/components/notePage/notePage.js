@@ -15,7 +15,7 @@ const NotePage = ({ data }) => {
         title={note.frontmatter.title}
         description={note.frontmatter.excerpt}
       />
-      <Graph height={25} data={[note]} />
+      <Graph data={[note]} />
       <Article data={note} />
       <References heading="In this note:" arr={note.outboundReferences} />
       <References heading="Reffered in:" arr={note.inboundReferences} />
