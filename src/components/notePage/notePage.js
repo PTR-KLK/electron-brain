@@ -5,17 +5,23 @@ import References from "./components/references"
 import Article from "./components/article"
 import Graph from "../graph/graphWrapper"
 import Seo from "../seo"
+import GraphButton from "./components/graphButton"
+import { connect } from "react-redux"
 
-const NotePage = ({ data }) => {
+const mapStateToProps = ({ graph }) => {
+  return { graph }
+}
+
+const NotePage = ({ data, graph }) => {
   const note = data.markdownRemark
 
   return (
-    <Layout>
+    <Layout button={<GraphButton />}>
       <Seo
         title={note.frontmatter.title}
         description={note.frontmatter.excerpt}
       />
-      <Graph data={[note]} />
+      {graph ? <Graph data={[note]} /> : null}
       <Article data={note} />
       <References heading="In this note:" arr={note.outboundReferences} />
       <References heading="Reffered in:" arr={note.inboundReferences} />
@@ -60,4 +66,4 @@ export const query = graphql`
   }
 `
 
-export default NotePage
+export default connect(mapStateToProps, null)(NotePage)

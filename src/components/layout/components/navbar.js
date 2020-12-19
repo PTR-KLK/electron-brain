@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { ThemeManagerContext } from "gatsby-styled-components-dark-mode"
 import { linkContainer, hover } from "../../theme"
 import { useStaticQuery, Link, graphql } from "gatsby"
-import { FaSun, FaMoon, FaProjectDiagram } from "react-icons/fa"
+import { FaSun, FaMoon } from "react-icons/fa"
 
 const Container = styled.nav`
   display: flex;
@@ -61,7 +61,7 @@ const Container = styled.nav`
   }
 `
 
-const Navbar = () => {
+const Navbar = ({ children }) => {
   const themeContext = useContext(ThemeManagerContext)
 
   const {
@@ -85,9 +85,7 @@ const Navbar = () => {
       <Link to={`/`}>
         <h1>My {title}</h1>
       </Link>
-      <button aria-label="Toggle graph">
-        <FaProjectDiagram />
-      </button>
+      {children}
       <button
         aria-label="Toggle dark mode"
         onClick={() => themeContext.toggleDark()}

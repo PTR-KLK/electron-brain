@@ -40,11 +40,11 @@ const Container = styled.main`
   margin: 0 auto;
 `
 
-const Layout = ({ children }) => {
+const Layout = ({ children, button }) => {
   return (
     <Container>
       <GlobalStyle />
-      <Navbar />
+      <Navbar>{button}</Navbar>
       {children}
       <Footer />
     </Container>
