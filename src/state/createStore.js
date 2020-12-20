@@ -1,11 +1,16 @@
 import { createStore, compose } from "redux"
 
-const initialState = { graph: true }
+const initialState = { graph: true, author: true }
 
 const reducer = (state, action) => {
   if (action.type === `TOGGLE_GRAPH`) {
     return Object.assign({}, state, {
       graph: !state.graph,
+    })
+  }
+  if (action.type === `TOGGLE_AUTHOR`) {
+    return Object.assign({}, state, {
+      author: !state.author,
     })
   }
   return state

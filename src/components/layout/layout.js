@@ -34,7 +34,7 @@ const Container = styled.main`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 1024px;
+  max-width: 768px;
   height: 100%;
   min-height: 100vh;
   margin: 0 auto;

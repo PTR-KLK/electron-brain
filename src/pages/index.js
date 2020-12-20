@@ -1,41 +1,29 @@
 import React from "react"
-import styled from "styled-components"
 import { graphql } from "gatsby"
+import { connect } from "react-redux"
 import Layout from "../components/layout/layout"
 import Seo from "../components/seo"
-import List from "../components/list"
+import Columns from "../components/columns/columns"
 import Graph from "../components/graph/graphWrapper"
+import Author from "../components/author"
+import AuthorButton from "../components/authorButton"
 
-const Columns = styled.section`
-  display: flex;
-  flex: 1;
-  width: calc(100% - 2rem);
-  flex-direction: column;
-  margin: 1rem 0;
+const mapStateToProps = ({ author }) => {
+  return { author }
+}
 
-  @media (min-width: 768px) {
-    justify-content: space-between;
-    flex-direction: row;
-    max-width: 1024px;
-  }
-`
-
-const Home = ({ data }) => {
+const Home = ({ data, author }) => {
   const {
     site: { siteMetadata },
-    latest: { edges: latest },
-    favourites: { edges: favourites },
     graph: { nodes: graph },
   } = data
 
   return (
-    <Layout>
+    <Layout button={<AuthorButton />}>
       <Seo title={siteMetadata.title} description={siteMetadata.description} />
+      {author ? <Author /> : null}
+      <Columns />
       <Graph data={graph} />
-      <Columns>
-        <List list={latest} heading="Latest updates:" details />
-        <List list={favourites} heading="Favourite parts:" />
-      </Columns>
     </Layout>
   )
 }
@@ -75,43 +63,6 @@ export const query = graphql`
         }
       }
     }
-    latest: allMarkdownRemark(
-      limit: 10
-      sort: { fields: fields___modifiedTime, order: DESC }
-    ) {
-      edges {
-        node {
-          id
-          frontmatter {
-            title
-            excerpt
-          }
-          fields {
-            slug
-            modifiedTime
-          }
-          excerpt
-        }
-      }
-    }
-    favourites: allMarkdownRemark(
-      filter: { frontmatter: { favourite: { eq: true } } }
-    ) {
-      edges {
-        node {
-          id
-          frontmatter {
-            title
-            excerpt
-          }
-          fields {
-            slug
-            modifiedTime
-          }
-          excerpt
-        }
-      }
-    }
   }
 `
-export default Home
+export default connect(mapStateToProps, null)(Home)

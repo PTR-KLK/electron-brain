@@ -88,6 +88,7 @@ const Navbar = ({ children }) => {
       {children}
       <button
         aria-label="Toggle dark mode"
+        title="Toggle dark mode"
         onClick={() => themeContext.toggleDark()}
       >
         {themeContext.isDark ? <FaMoon /> : <FaSun />}

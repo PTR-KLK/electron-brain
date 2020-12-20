@@ -4,7 +4,11 @@ import { connect } from "react-redux"
 
 const GraphButton = ({ toggleGraph }) => {
   return (
-    <button aria-label="Toggle graph" onClick={toggleGraph}>
+    <button
+      aria-label="Toggle graph"
+      title="Toggle graph"
+      onClick={toggleGraph}
+    >
       <FaProjectDiagram />
     </button>
   )
