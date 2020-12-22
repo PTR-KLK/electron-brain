@@ -71,10 +71,10 @@ const Author = withTheme(({ theme: { isDark } }) => {
       <p>
         Hi there!
         <br />
-        This is my electron brain.
+        I present to you my electron brain.
         <br />
         <br />
-        If you want, you cant toggle this section in the navbar.
+        If you want, you can toggle this section in the navbar.
       </p>
     </Container>
   )

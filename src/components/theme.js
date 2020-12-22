@@ -2,10 +2,12 @@ import { keyframes } from "styled-components"
 
 const boxContainer = theme => `
   border: 1px solid ${theme.text};
+  border-radius: 0.25rem;
   background: ${theme.primary};
+  ${shadow(theme)};
 `
 
-const linkShadow = theme => `
+const shadow = theme => `
   box-shadow: 2px 2px 0px 0px ${theme.secondary};
 `
 
@@ -16,13 +18,12 @@ export const sectionContainer = theme => `
 `
 
 export const linkContainer = theme => `
-  ${linkShadow(theme)};
   ${boxContainer(theme)};
 `
 
 export const hover = theme => keyframes`
   from {
-    ${linkShadow(theme)};
+    ${shadow(theme)};
   }
 
   to {

@@ -5,8 +5,9 @@ import { sectionContainer, reveal } from "../theme"
 const Graph = React.lazy(() => fakeDelay(500)(import("./graph")))
 
 const Container = styled.section`
-  height: 50vh;
+  height: calc(100vh - 5.375rem);
   justify-content: center;
+  margin: 1rem 0;
   ${({ theme }) => sectionContainer(theme)}
 
   p {
@@ -18,6 +19,10 @@ const Container = styled.section`
   canvas:focus,
   .vis-network:focus {
     outline: none;
+  }
+
+  @media (min-width: 768px) {
+    height: 50vh;
   }
 `
 
