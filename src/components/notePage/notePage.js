@@ -36,6 +36,8 @@ export const query = graphql`
       html
       frontmatter {
         title
+        date
+        last_modified
       }
       fields {
         slug

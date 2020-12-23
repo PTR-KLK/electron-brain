@@ -12,18 +12,10 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `MarkdownRemark`) {
-    const fileNode = getNode(node.parent)
-
     createNodeField({
       node,
       name: `slug`,
       value: createSlug(node),
-    })
-
-    createNodeField({
-      node,
-      name: "modifiedTime",
-      value: fileNode.mtime,
     })
   }
 }

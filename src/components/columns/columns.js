@@ -24,7 +24,7 @@ const Columns = () => {
     query {
       latest: allMarkdownRemark(
         limit: 10
-        sort: { fields: fields___modifiedTime, order: DESC }
+        sort: { fields: frontmatter___last_modified, order: DESC }
       ) {
         edges {
           node {
@@ -32,10 +32,11 @@ const Columns = () => {
             frontmatter {
               title
               excerpt
+              date
+              last_modified
             }
             fields {
               slug
-              modifiedTime
             }
             excerpt
           }
@@ -53,7 +54,6 @@ const Columns = () => {
             }
             fields {
               slug
-              modifiedTime
             }
             excerpt
           }

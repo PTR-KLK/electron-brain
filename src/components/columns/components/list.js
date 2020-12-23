@@ -29,9 +29,7 @@ const ListItem = ({ data, details }) => {
   return (
     <li>
       <h3>
-        {details ? (
-          <span>{data.fields.modifiedTime.slice(0, 10)} — </span>
-        ) : null}
+        {details ? <span>{data.frontmatter.last_modified} — </span> : null}
         <Link to={data.fields.slug}>{data.frontmatter.title} </Link>
       </h3>
       {details ? <p>{data.frontmatter.excerpt || data.excerpt}</p> : null}

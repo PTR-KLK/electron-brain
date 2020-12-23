@@ -2,6 +2,8 @@ module.exports = {
   siteMetadata: {
     title: `Electron Brain`,
     description: `A simple page with electron brain`,
+    remoteNoteName: `example-note-repo`,
+    remoteNoteUrl: `https://github.com/PTR-KLK/example-note-repo.git`,
     author: `ptr-klk`,
     year: "2020",
   },
@@ -73,10 +75,13 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: `gatsby-source-git`,
       options: {
-        name: `notes`,
-        path: `${__dirname}/notes/`,
+        name: `example-note-repo`,
+        // remote repo name
+        remote: `https://github.com/PTR-KLK/example-note-repo.git`,
+        // remote repo url with *.md notes
+        branch: `master`,
       },
     },
     {
