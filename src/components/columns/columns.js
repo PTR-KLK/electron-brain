@@ -22,7 +22,7 @@ const Columns = () => {
     favourites: { edges: favourites },
   } = useStaticQuery(graphql`
     query {
-      latest: allMarkdownRemark(
+      latest: allMdx(
         limit: 10
         sort: { fields: frontmatter___last_modified, order: DESC }
       ) {
@@ -42,9 +42,7 @@ const Columns = () => {
           }
         }
       }
-      favourites: allMarkdownRemark(
-        filter: { frontmatter: { favourite: { eq: true } } }
-      ) {
+      favourites: allMdx(filter: { frontmatter: { favourite: { eq: true } } }) {
         edges {
           node {
             id

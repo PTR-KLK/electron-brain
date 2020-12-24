@@ -1,5 +1,8 @@
 import React from "react"
+import { MDXProvider } from "@mdx-js/react"
+import { MDXRenderer } from "gatsby-plugin-mdx"
 import styled from "styled-components"
+import catchLinks from "./catchLinks"
 
 const Container = styled.article`
   width: calc(100% - 2rem);
@@ -9,7 +12,7 @@ const Container = styled.article`
 
 const Article = ({ data }) => {
   const {
-    html,
+    body,
     frontmatter: { title, date, last_modified },
   } = data
 
@@ -20,7 +23,9 @@ const Article = ({ data }) => {
         Published: {date}
         {date !== last_modified ? ` | Modified: ${last_modified}` : null}
       </p>
-      <div dangerouslySetInnerHTML={{ __html: html }} />
+      <MDXProvider components={catchLinks}>
+        <MDXRenderer>{body}</MDXRenderer>
+      </MDXProvider>
     </Container>
   )
 }

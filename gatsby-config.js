@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: "/electron-brain",
   siteMetadata: {
     title: `Electron Brain`,
     description: `A simple page with electron brain`,
@@ -85,9 +86,10 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        plugins: [
+        extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-double-brackets-link`,
             options: {
@@ -100,13 +102,7 @@ module.exports = {
     {
       resolve: `gatsby-transformer-markdown-references`,
       options: {
-        types: ["MarkdownRemark"],
-      },
-    },
-    {
-      resolve: `gatsby-plugin-catch-links`,
-      options: {
-        excludePattern: /(excluded-link|external)/,
+        types: ["Mdx"],
       },
     },
     {

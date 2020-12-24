@@ -13,7 +13,7 @@ const mapStateToProps = ({ graph }) => {
 }
 
 const NotePage = ({ data, graph }) => {
-  const note = data.markdownRemark
+  const note = data.mdx
 
   return (
     <Layout button={<GraphButton />}>
@@ -31,9 +31,9 @@ const NotePage = ({ data, graph }) => {
 
 export const query = graphql`
   query($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+    mdx(fields: { slug: { eq: $slug } }) {
       id
-      html
+      body
       frontmatter {
         title
         date
@@ -43,7 +43,7 @@ export const query = graphql`
         slug
       }
       outboundReferences {
-        ... on MarkdownRemark {
+        ... on Mdx {
           id
           frontmatter {
             title
@@ -54,7 +54,7 @@ export const query = graphql`
         }
       }
       inboundReferences {
-        ... on MarkdownRemark {
+        ... on Mdx {
           id
           frontmatter {
             title

@@ -36,7 +36,7 @@ export const query = graphql`
         description
       }
     }
-    graph: allMarkdownRemark {
+    graph: allMdx {
       nodes {
         id
         frontmatter {
@@ -46,7 +46,7 @@ export const query = graphql`
           slug
         }
         outboundReferences {
-          ... on MarkdownRemark {
+          ... on Mdx {
             id
             frontmatter {
               title
@@ -54,7 +54,7 @@ export const query = graphql`
           }
         }
         inboundReferences {
-          ... on MarkdownRemark {
+          ... on Mdx {
             id
             frontmatter {
               title
