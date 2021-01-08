@@ -1,4 +1,5 @@
 import { keyframes } from "styled-components"
+import { rgba } from "polished"
 
 const boxContainer = theme => `
   border: 1px solid ${theme.text};
@@ -8,7 +9,7 @@ const boxContainer = theme => `
 `
 
 const shadow = theme => `
-  box-shadow: 2px 2px 0px 0px ${theme.secondary};
+  box-shadow: 2px 2px 0px 0px ${rgba(theme.secondary, 0.8)};
 `
 
 export const sectionContainer = theme => `

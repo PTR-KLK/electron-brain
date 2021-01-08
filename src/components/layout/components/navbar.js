@@ -33,6 +33,7 @@ const Container = styled.nav`
 
   a {
     margin: 0 auto 0 0;
+    color: ${props => props.theme.text};
   }
 
   a,

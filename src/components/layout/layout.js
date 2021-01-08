@@ -17,11 +17,11 @@ const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    color: ${props => props.theme.text};
+    color: ${props => props.theme.secondary};
   }
 
   a:visited {
-    color: ${props => props.theme.secondary};
+    color: ${props => props.theme.text};
   }
 
   a:hover, a:active {
