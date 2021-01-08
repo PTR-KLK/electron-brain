@@ -6,7 +6,7 @@ module.exports = {
     remoteNoteName: `example-note-repo`,
     remoteNoteUrl: `https://github.com/PTR-KLK/example-note-repo.git`,
     author: `ptr-klk`,
-    year: "2020",
+    year: "2021",
   },
   plugins: [
     {
