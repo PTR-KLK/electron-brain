@@ -1,14 +1,16 @@
-# Receive repository dispatch and do something
+# Receive repository dispatch and publish to gh-pages branch
 
-name: Repository Dispatch
+name: Publish on Repository Dispatch
 on:
   repository_dispatch:
     types: new-note
 jobs:
-  myEvent:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
+      - uses: enriikke/gatsby-gh-pages-action@v2
         with:
-          ref: ${{ github.event.client_payload.ref }}
-      - run: echo ${{ github.event.client_payload.sha }}
+          access-token: ${{ secrets.ACCESS_TOKEN }}
+          deploy-branch: gh-pages
+          gatsby-args: --prefix-paths
