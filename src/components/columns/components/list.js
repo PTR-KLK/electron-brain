@@ -25,11 +25,18 @@ const Heading = styled.h2`
   margin: 0 0 1rem;
 `
 
+const convertDate = str => {
+  const date = new Date(str)
+  return date.toLocaleDateString()
+}
+
 const ListItem = ({ data, details }) => {
   return (
     <li>
       <h3>
-        {details ? <span>{data.frontmatter.last_modified} — </span> : null}
+        {details ? (
+          <span>{convertDate(data.frontmatter.last_modified)} — </span>
+        ) : null}
         <Link to={data.fields.slug}>{data.frontmatter.title} </Link>
       </h3>
       {details ? <p>{data.frontmatter.excerpt || data.excerpt}</p> : null}

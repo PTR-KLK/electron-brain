@@ -10,6 +10,11 @@ const Container = styled.article`
   flex: 1;
 `
 
+const convertDate = str => {
+  const date = new Date(str)
+  return date.toLocaleDateString()
+}
+
 const Article = ({ data }) => {
   const {
     body,
@@ -20,8 +25,10 @@ const Article = ({ data }) => {
     <Container>
       <h2>{title}</h2>
       <p>
-        Published: {date}
-        {date !== last_modified ? ` | Modified: ${last_modified}` : null}
+        Published: {convertDate(date)}
+        {last_modified !== date
+          ? ` | Modified: ${convertDate(last_modified)}`
+          : null}
       </p>
       <MDXProvider components={catchLinks}>
         <MDXRenderer>{body}</MDXRenderer>
