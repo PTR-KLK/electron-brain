@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   pathPrefix: "/electron-brain",
   siteMetadata: {
@@ -82,7 +86,7 @@ module.exports = {
         // remote repo name
         remote: `https://github.com/PTR-KLK/example-note-repo.git`,
         // remote repo url with *.md notes
-        branch: `master`,
+        branch: process.env.NOTES_BRANCH ? process.env.NOTES_BRANCH : "master",
       },
     },
     {
