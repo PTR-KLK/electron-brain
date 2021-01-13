@@ -33,11 +33,11 @@ self.__precacheManifest = [
     "url": "framework-6eeb8ad043160a79d5e7.js"
   },
   {
-    "url": "app-0a0906cd376ac61ec051.js"
+    "url": "app-9710b5123f241fc089be.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "2988310bef6a6e65e57998fa595f64c2"
+    "revision": "91b2928923309a8431aa80c4a933584f"
   },
   {
     "url": "static/webfonts/s/montserrat/v15/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2"
@@ -60,7 +60,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/app-data.json",
-    "revision": "daff73b87ab7e0fd4b948548f3634427"
+    "revision": "94f3b11e2c829196878ee2f73e3a3869"
   },
   {
     "url": "polyfill-30a761bdd526fe06de9d.js"
@@ -159,7 +159,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/electron-brain/app-0a0906cd376ac61ec051.js`))) {
+  if (!resources || !(await caches.match(`/electron-brain/app-9710b5123f241fc089be.js`))) {
     return await fetch(event.request)
   }
 
