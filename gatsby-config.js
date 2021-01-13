@@ -100,6 +100,14 @@ module.exports = {
               stripBrackets: true,
             },
           },
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 768,
+              withWebp: true,
+              tracedSVG: true,
+            },
+          },
         ],
       },
     },
