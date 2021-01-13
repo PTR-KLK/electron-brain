@@ -5,6 +5,9 @@ name: Publish on Repository Dispatch
 on:
   repository_dispatch:
     types: new-note
+  push:
+    branches:
+      - master
 
 jobs:
   build:
