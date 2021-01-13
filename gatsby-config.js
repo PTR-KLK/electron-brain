@@ -108,6 +108,10 @@ module.exports = {
               tracedSVG: true,
             },
           },
+          {
+            resolve: `gatsby-remark-prismjs`,
+            options: {},
+          },
         ],
       },
     },
