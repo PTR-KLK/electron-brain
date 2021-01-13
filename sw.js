@@ -27,17 +27,17 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-cf1f11dce56e3da8189f.js"
+    "url": "webpack-runtime-150680dcd108c072ea85.js"
   },
   {
     "url": "framework-6eeb8ad043160a79d5e7.js"
   },
   {
-    "url": "app-9710b5123f241fc089be.js"
+    "url": "app-451150041e8eee9b2e94.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "91b2928923309a8431aa80c4a933584f"
+    "revision": "183babd4b4badd04ae36ca56bbea3269"
   },
   {
     "url": "static/webfonts/s/montserrat/v15/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2"
@@ -60,10 +60,10 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/app-data.json",
-    "revision": "94f3b11e2c829196878ee2f73e3a3869"
+    "revision": "2709145d66655a70ddcb763b01e419ed"
   },
   {
-    "url": "polyfill-30a761bdd526fe06de9d.js"
+    "url": "polyfill-c4336065681b4417609f.js"
   },
   {
     "url": "manifest.webmanifest",
@@ -159,7 +159,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/electron-brain/app-9710b5123f241fc089be.js`))) {
+  if (!resources || !(await caches.match(`/electron-brain/app-451150041e8eee9b2e94.js`))) {
     return await fetch(event.request)
   }
 
