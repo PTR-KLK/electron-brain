@@ -1,0 +1,9 @@
+.gatsby-highlight {
+  border-radius: 0.25rem;
+  box-shadow: 2px 2px 0px 0px rgba(255, 108, 10, 0.8);
+}
+
+.gatsby-highlight pre[class*="language-"] {
+  border-radius: 0.25rem;
+  margin: 1rem 0;
+}
